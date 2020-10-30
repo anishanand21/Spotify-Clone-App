@@ -13,6 +13,7 @@ import com.android.spotifyclone.exoplayer.callbacks.MusicPlaybackPreparer
 import com.android.spotifyclone.exoplayer.callbacks.MusicPlayerEventListener
 import com.android.spotifyclone.exoplayer.callbacks.MusicPlayerNotificationListener
 import com.android.spotifyclone.other.Constants.MEDIA_ROOT_ID
+import com.android.spotifyclone.other.Constants.NETWORK_ERROR
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
@@ -153,6 +154,7 @@ class MusicService : MediaBrowserServiceCompat() {
                             isPlayerInitialized = true
                         }
                     } else {
+                        mediaSession.sendSessionEvent(NETWORK_ERROR, null)
                         result.sendResult(null)
                     }
                 }
